@@ -28,6 +28,12 @@
     return topic.levels.filter((_, index) => saved?.[index]?.completed).length;
   }
 
+  function pointsLabel(points) {
+    if (points === 1) return "bod";
+    if (points >= 2 && points <= 4) return "body";
+    return "bodů";
+  }
+
   function element(tag, className, text) {
     const node = document.createElement(tag);
     if (className) node.className = className;
@@ -61,7 +67,7 @@
 
       const stats = element("div", "topic-stats");
       stats.append(element("span", "", `${done} z ${topic.levels.length} případů`));
-      stats.append(element("span", "", `⭐ ${bestScore} bodů`));
+      stats.append(element("span", "", `⭐ ${bestScore} ${pointsLabel(bestScore)}`));
       card.append(stats);
 
       const track = element("div", "progress-track");
